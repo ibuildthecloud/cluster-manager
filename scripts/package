@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+source $(dirname $0)/version
+
+cd $(dirname $0)/../package
+
+TAG=${TAG:-${VERSION}}
+REPO=${REPO:-rancher}
+
+cp ../bin/cluster-manager .
+docker build -t ${REPO}/cluster-manager:${TAG} .
+
+echo Built ${REPO}/cluster-manager:${TAG}
